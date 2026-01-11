@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - BankHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🏦 BankHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container login-container">
+            <h1>Customer Login</h1>
+            <p class="form-description">Sign in to your account</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginAccountId">Customer Account Number *</label>
+                    <input type="text" id="loginAccountId" name="loginAccountId" placeholder="Enter your Account ID" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password *</label>
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password (Max 30 characters)" maxlength="30" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p class="form-footer">Don't have an account? <a href="register.html">Register here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="loginSuccessModal" class="modal">
+        <div class="modal-content modal-success">
+            <div class="modal-icon">✓</div>
+            <h2>Login Successful!</h2>
+            <p id="welcomeMessage"></p>
+            <button class="btn btn-primary" onclick="redirectToDashboard()">Go to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="loginErrorModal" class="modal">
+        <div class="modal-content modal-error">
+            <div class="modal-icon">✗</div>
+            <h2>Login Failed</h2>
+            <p id="loginErrorMessage"></p>
+            <button class="btn btn-primary" onclick="closeLoginErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 BankHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

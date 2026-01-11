@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw - BankHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container">
+            <div class="logo">
+                <h1>🏦 BankHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="deposit.html">Deposit</a></li>
+                <li><a href="withdraw.html" class="active">Withdraw</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html" onclick="logout(event)">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Withdraw Money</h1>
+            <p class="form-description">Withdraw funds from your account</p>
+            
+            <form id="withdrawForm">
+                <div class="form-group">
+                    <label for="withdrawAmount">Withdrawal Amount *</label>
+                    <input type="number" id="withdrawAmount" name="withdrawAmount" placeholder="Enter amount to withdraw" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdrawDescription">Description (Optional)</label>
+                    <textarea id="withdrawDescription" name="withdrawDescription" placeholder="Enter reason for withdrawal" maxlength="200"></textarea>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Current Balance:</strong> <span id="currentWithdrawBalance">$0.00</span></p>
+                    <p><strong>Amount to Withdraw:</strong> <span id="amountToWithdraw">$0.00</span></p>
+                    <p style="font-size: 18px; color: #27ae60;"><strong>New Balance:</strong> <span id="newWithdrawBalance">$0.00</span></p>
+                </div>
+
+                <div class="withdrawal-rules">
+                    <h3>Withdrawal Rules:</h3>
+                    <ul>
+                        <li>Minimum withdrawal amount: $0.01</li>
+                        <li>Maximum withdrawal amount: $1000</li>
+                        <li>Minimum balance after withdrawal: $500</li>
+                        <li>If remaining balance is less than $500, withdrawal will not be processed</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Withdraw</button>
+                <a href="dashboard.html" class="btn btn-secondary btn-block">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="withdrawSuccessModal" class="modal">
+        <div class="modal-content modal-success">
+            <div class="modal-icon">✓</div>
+            <h2>Withdrawal Successful!</h2>
+            <p>Your withdrawal has been processed successfully.</p>
+            <div class="withdrawal-details">
+                <p><strong>Amount Withdrawn:</strong> <span id="withdrawnAmount">$0.00</span></p>
+                <p><strong>New Balance:</strong> <span id="newWithdrawBalanceDisplay">$0.00</span></p>
+            </div>
+            <button class="btn btn-primary" onclick="redirectToDashboard()">Go to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="withdrawErrorModal" class="modal">
+        <div class="modal-content modal-error">
+            <div class="modal-icon">✗</div>
+            <h2>Error</h2>
+            <p id="withdrawErrorMessage"></p>
+            <button class="btn btn-primary" onclick="closeWithdrawErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 BankHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load withdraw page data
+        window.addEventListener('load', function() {
+            loadWithdrawPageData();
+        });
+
+        // Update preview as user types amount
+        document.getElementById('withdrawAmount').addEventListener('input', function() {
+            updateWithdrawPreview();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - BankHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container">
+            <div class="logo">
+                <h1>🏦 BankHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="deposit.html" class="active">Deposit</a></li>
+                <li><a href="withdraw.html">Withdraw</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html" onclick="logout(event)">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Deposit Money</h1>
+            <p class="form-description">Add funds to your account</p>
+            
+            <form id="depositForm">
+                <div class="form-group">
+                    <label for="depositAmount">Deposit Amount *</label>
+                    <input type="number" id="depositAmount" name="depositAmount" placeholder="Enter amount to deposit" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="depositDescription">Description (Optional)</label>
+                    <textarea id="depositDescription" name="depositDescription" placeholder="Enter reason for deposit" maxlength="200"></textarea>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Current Balance:</strong> <span id="currentBalance">$0.00</span></p>
+                    <p><strong>Amount to Deposit:</strong> <span id="amountToDeposit">$0.00</span></p>
+                    <p style="font-size: 18px; color: #27ae60;"><strong>New Balance:</strong> <span id="newBalance">$0.00</span></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Deposit</button>
+                <a href="dashboard.html" class="btn btn-secondary btn-block">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="depositSuccessModal" class="modal">
+        <div class="modal-content modal-success">
+            <div class="modal-icon">✓</div>
+            <h2>Deposit Successful!</h2>
+            <p>Your deposit has been processed successfully.</p>
+            <div class="deposit-details">
+                <p><strong>Amount Deposited:</strong> <span id="depositedAmount">$0.00</span></p>
+                <p><strong>New Balance:</strong> <span id="newBalanceDisplay">$0.00</span></p>
+            </div>
+            <button class="btn btn-primary" onclick="redirectToDashboard()">Go to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="depositErrorModal" class="modal">
+        <div class="modal-content modal-error">
+            <div class="modal-icon">✗</div>
+            <h2>Error</h2>
+            <p id="depositErrorMessage"></p>
+            <button class="btn btn-primary" onclick="closeDepositErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 BankHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load deposit page data
+        window.addEventListener('load', function() {
+            loadDepositPageData();
+        });
+
+        // Update preview as user types amount
+        document.getElementById('depositAmount').addEventListener('input', function() {
+            updateDepositPreview();
+        });
+    </script>
+</body>
+</html>

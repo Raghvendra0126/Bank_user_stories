@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - BankHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container">
+            <div class="logo">
+                <h1>🏦 BankHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="deposit.html">Deposit</a></li>
+                <li><a href="withdraw.html">Withdraw</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="index.html" onclick="logout(event)">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Edit Account Details</h1>
+            <p class="form-description">Update your account information</p>
+            
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="profileAccountId">Customer Account Number</label>
+                    <input type="text" id="profileAccountId" name="profileAccountId" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileCustomerName">Customer Name *</label>
+                    <input type="text" id="profileCustomerName" name="profileCustomerName" placeholder="Enter customer name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileAadharId">Aadhar Card Number *</label>
+                    <input type="text" id="profileAadharId" name="profileAadharId" placeholder="Enter Aadhar card number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileEmail">Email *</label>
+                    <input type="email" id="profileEmail" name="profileEmail" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileAddress">Address *</label>
+                    <textarea id="profileAddress" name="profileAddress" placeholder="Enter street, city details (Max 100 characters)" maxlength="100" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileContactNumber">Contact Number *</label>
+                    <input type="tel" id="profileContactNumber" name="profileContactNumber" placeholder="Enter contact number (Max 10 characters)" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileMaritalStatus">Marital Status</label>
+                    <select id="profileMaritalStatus" name="profileMaritalStatus">
+                        <option value="">Select Status</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileDateOfBirth">Date of Birth</label>
+                    <input type="date" id="profileDateOfBirth" name="profileDateOfBirth">
+                </div>
+
+                <div class="form-group">
+                    <label for="profileGender">Gender</label>
+                    <select id="profileGender" name="profileGender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="profilePanCard">Pan Card Number</label>
+                    <input type="text" id="profilePanCard" name="profilePanCard" placeholder="Enter PAN card number">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                <a href="dashboard.html" class="btn btn-secondary btn-block">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="profileSuccessModal" class="modal">
+        <div class="modal-content modal-success">
+            <div class="modal-icon">✓</div>
+            <h2>Profile Updated Successfully!</h2>
+            <p>Your account details have been updated.</p>
+            <button class="btn btn-primary" onclick="redirectToDashboard()">Go to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="profileErrorModal" class="modal">
+        <div class="modal-content modal-error">
+            <div class="modal-icon">✗</div>
+            <h2>Error</h2>
+            <p id="profileErrorMessage"></p>
+            <button class="btn btn-primary" onclick="closeProfileErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 BankHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load profile data when page loads
+        window.addEventListener('load', function() {
+            loadProfileData();
+        });
+    </script>
+</body>
+</html>
